@@ -1,6 +1,9 @@
 <h1>Born2beRoot</h1>
 
 <h2> Index </h2>
+<p><a href="#Set the basic up">
+  Set the basic up
+</a></p>
 <p><a href="#Assemble remote SSH">
   Assemble remote SSH
 </a></p>
@@ -20,17 +23,43 @@
   Installation
 </a></p>
 
+<h2 id="Set the basic up">Set the basic up</h2>
+<p> Login as root: <code>su</code></p>
+<p> Update & Upgrade: <code> apt update</code> and <code> apt upgrade</code></p>
+<p> Install sudo: <code> apt install sudo</code></p>
+<p> Add user to sudo group: <code>sudo usermode -aG sudo bmiguel-</code></p>
+<p> <code>-a</code> is a shortcut for --append: It means append the group to the list of groups the user belongs to!</p>
+<p> <code>-G</code> is a shortcut for --groups: It tells usermod that the next argument is a group. Note that you need to use a capital -G here because we don’t want to modify the user’s primary group but the list of supplemental groups the user belongs to.</p>
+<p> To check if your user is in the sudo group <code>getent group sudo</code></p>
+<p> Leave root to your user now <code>su - bmiguel-</code></p>
+<p> <a href="https://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/" target="_blank">Why You Shouldn’t Log Into Your Linux System As Root</a></p>
+<p> Install VIM: <code>sudo apt install vim</code></p>
+
 <h2 id="Assemble remote SSH">Assemble remote SSH</h2>
-<p> Proof of work (PoW) describes a system that requires a not-insignificant but feasible amount of effort in order to deter frivolous or malicious uses of computing power, such as sending spam emails or launching denial of service attacks.
- The concept was subsequently adapted to securing digital money by Hal Finney in 2004 through the idea of "reusable proof of work" using the SHA-256 hashing algorithm.</p>
+<p> Install OpenSSH: <code>sudo apt install openssh-server</code></p>
+<p> Verify ssh service: <code>sudo systemctl status ssh</code></p>
+<p> Get your ip: <code>ip a</code></p>
+<p> Add port 4242: go to <code>/etc/ssh</code>, run <code>sudo vim sshd_config</code> and edit the <code>#Port22</code> to <code>Port 4242</code></p>
+<p> Install UFW Firewall: <code> sudo apt install ufw</code></p>
+<p> Activate UFW: <code>sudo ufw enable</code></p>
+<p> To check if its enable <code>sudo ufw status</code></p>
+<p> Reboot the machine: <code> sudo reboot</code></p>
+<p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
+<p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@ip.adress</code> in my case <code> bmiguel-@10.0.2.15</code></p>
+<p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>sudo ssh -p 4242 username@ip.adress</code> in my case <code>sudo ssh -p 4242 bmiguel-@127.0.0.1</code></p>
 
 
 <a href="https://www.investopedia.com/terms/p/proof-work.asp" target="_blank">Understanding Proof of Work - Investopedia</a> 
 <br>
 
 <h2 id="Password Policy">Password Policy</h2>
-<p> Proof of work (PoW) describes a system that requires a not-insignificant but feasible amount of effort in order to deter frivolous or malicious uses of computing power, such as sending spam emails or launching denial of service attacks.
- The concept was subsequently adapted to securing digital money by Hal Finney in 2004 through the idea of "reusable proof of work" using the SHA-256 hashing algorithm.</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 
 
 <a href="https://www.investopedia.com/terms/p/proof-work.asp" target="_blank">Understanding Proof of Work - Investopedia</a> 
