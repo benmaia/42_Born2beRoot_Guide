@@ -43,13 +43,20 @@
 <p> Install UFW Firewall: <code> sudo apt install ufw</code></p>
 <p> Activate UFW: <code>sudo ufw enable</code></p>
 <p> To check if its enable <code>sudo ufw status</code></p>
+<p> Go to VirutalBox -> Choose the VM -> Select "Settings" -> Choose "Network" -> "Adapter 1" -> "Advance" -> "Port Forwarding"</p>
+ <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654394892328/9.png" width="500px" height="400px">
+<p> Insert <code>4242</code> in Host Port and Guest Port</p>
+<div align="center">
+ <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654780788838/10.png" width="900px" height="350px">
+</div>
 <p> Reboot the machine: <code> sudo reboot</code></p>
 <p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
-<p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@ip.adress</code> in my case <code> bmiguel-@10.0.2.15</code></p>
-<p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>sudo ssh -p 4242 username@ip.adress</code> in my case <code>sudo ssh -p 4242 bmiguel-@127.0.0.1</code></p>
+<p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@10.0.2.5</code> in my case <code>bmiguel-@10.0.2.15</code></p>
+<p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>sudo ssh -p 4242 username@127.0.0.1</code> in my case <code>sudo ssh -p 4242 bmiguel-@127.0.0.1</code></p>
 
-
-<a href="https://www.investopedia.com/terms/p/proof-work.asp" target="_blank">Understanding Proof of Work - Investopedia</a> 
+<a href="http://www.openssh.com/" target="_blank">Open SSH</a> 
+<br>
+<a href="https://www.linux.com/training-tutorials/introduction-uncomplicated-firewall-ufw/" target="_blank">An Introduction to Uncomplicated Firewall (UFW)</a> 
 <br>
 
 <h2 id="Password Policy">Password Policy</h2>
@@ -106,12 +113,6 @@
 </div>
 <div align="center">
  <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654038397018/8.png">
-</div>
-<div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654394892328/9.png">
-</div>
-<div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654780788838/10.png">
 </div>
 
 <h2 id="Installation">Installation</h2>
