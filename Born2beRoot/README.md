@@ -1,26 +1,26 @@
 <h1>Born2beRoot</h1>
 
 <h2> Index </h2>
-<p><a href="#Set the basic up">
-  Set the basic up
-</a></p>
-<p><a href="#Assemble remote SSH">
-  Assemble remote SSH
-</a></p>
-<p><a href="#Password Policy">
-  Password Policy
-</a></p>
-<p><a href="#Sudo Policy">
-  Sudo Policy
-</a></p>
-<p><a href="#Script">
-  Script
-</a></p>
 <p><a href="#VM Assemble">
-  VM Assemble
+  00 - VM Assemble
 </a></p>
 <p><a href="#Installation">
-  Installation
+  01 - Installation
+</a></p>
+<p><a href="#Set the basic up">
+  02 - Set the basic up
+</a></p>
+<p><a href="#Assemble remote SSH">
+  03 - Assemble remote SSH
+</a></p>
+<p><a href="#Password Policy">
+  03 - Password Policy
+</a></p>
+<p><a href="#Sudo Policy">
+  04 - Sudo Policy
+</a></p>
+<p><a href="#Script">
+  05 - Script
 </a></p>
 
 <h2 id="Set the basic up">Set the basic up</h2>
