@@ -94,7 +94,7 @@
 <p> To enable TTY <code> Defaults        requiretty</code></p>
 <p> To select the right folder for your log files <code> Defaults        logfile="/var/log/sudo/sudo.log"</code></p>
 <p> To archive your log inputs and outputs <code> Defaults        log_input, log_output</code></p>
-<p> To set your password retries (It usually comes 3 times as default, but still...) <code> Defaults        passwdtries=3</code></p>
+<p> To set your password retries (It usually comes 3 times as default, but still...) <code> Defaults        passwd_tries=3</code></p>
 <p> To enable TTY <code> Defaults        badpass_message="Your message"</code></p>
 <p> The security pass probably is already there, but in case it isn't <code>Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</code></p>
 <img src="https://cdn.discordapp.com/attachments/920049215504269342/920102151815049247/40.png">
