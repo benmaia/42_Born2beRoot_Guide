@@ -104,6 +104,13 @@
 <br>
 
 <h2 id="Script">Script</h2>
+<p> Run: <code>sudo vim /usr/local/bin/monitoring.sh</code></p>
+<p> Every bash script start with <code>#!/bin/bash</code></p>
+<p> <code>wall</code> is a command-line utility that displays a message on the terminals of all logged-in users. The messages can be either typed on the terminal or the contents of a file.</p>
+<p> The command <code>uname -a</code> is use to get the architecture, <code>uname</code> is used to to print certain system information including kernel name, and the <code>-a</code> or <code>all</code> print all information </p>
+<p> To list the number of physical CPU's you can use <code>/proc/cpuinfo | grep "physical id" | sort | uniq | wc -l</code></p>
+<p> To list how many virtual processors you have you can use <code>/proc/cpuinfo | grep "^processor"</code></p>
+<p> free -m output in MB</p>
 <p> </p>
 <p> </p>
 <p> </p>
@@ -111,6 +118,18 @@
 <p> </p>
 <p> </p>
 <p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+
 
 <a href="https://www.debian.org/download" target="_blank">here</a> 
 <br>
