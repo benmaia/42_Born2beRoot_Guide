@@ -33,6 +33,8 @@
 <p> To check if your user is in the sudo group <code>getent group sudo</code></p>
 <p> Leave root to your user now <code>su - bmiguel-</code></p>
 <p> <a href="https://www.howtogeek.com/124950/htg-explains-why-you-shouldnt-log-into-your-linux-system-as-root/" target="_blank">Why You Shouldn’t Log Into Your Linux System As Root</a></p>
+<p> Add group user42: <code> sudo groupadd user42</code></p>
+<p> Add our user to that group: <code> sudo usermod -aG user42 bmiguel-</code>
 <p> Install VIM: <code>sudo apt install vim</code></p>
 
 <h2 id="Assemble remote SSH">Assemble remote SSH</h2>
@@ -60,28 +62,55 @@
 <br>
 
 <h2 id="Password Policy">Password Policy</h2>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
+<p> To enforce password complexity I will use pwquality.conf <code>sudo apt install libpam-pwquality</code></p>
+<p> Go to <code>/etc</code> and run <code> sudo vim login.defs</code></p>
+<p> Search for:</p>
+<p> <code>PASS_MAX_DAYS  9999</code></p>
+<p> <code>PASS_MIN_DAYS   0</code></p>
+<p> <code>PASS_WARN_AGE   7</code></p>
+<p> and change to</p>
+<p> <code>PASS_MAX_DAYS  30</code></p>
+<p> <code>PASS_MIN_DAYS   2</code></p>
+<p> <code>PASS_WARN_AGE   7</code></p>
+<p> Go to <code>/etc/pam.d</code>, run <code>sudo vim common-password</code> and find <code>password        requisite                       pam_pwquality.so retry=3</code></p>
+<p> To set at least one upper-case letter in the pw add <code> ucredit=-1</code> </p>
+<p> To set at least one lower-case letter in the pw add <code> lcredit=-1</code></p>
+<p> To set at least one digit in the pw add <code> dcredit=-1</code></p>
+<p> To set the minimum length in the pw add <code> minlen=10</code></p>
+<p> To set at max consecutive identical chars in the pw add <code> maxrepeat=3</code></p>
+<p> To check if the password contains the username in some form add <code> usercheck=0</code></p>
+<p> To set a minimum number of chars that must be different from the old pw add <code> difok=7</code></p>
+<p> To the root pw comply to this policy add <code> enforce_for_root</code></p></p>
+<p> Reboot your VM <code> sudo reboot</code></p>
+ <img src="https://cdn.discordapp.com/attachments/920049215504269342/920102151538217010/39.png">
 
-
-<a href="https://www.investopedia.com/terms/p/proof-work.asp" target="_blank">Understanding Proof of Work - Investopedia</a> 
+<a href="https://linux.die.net/man/8/pam_pwquality" target="_blank">Pam_pwquality</a> 
 <br>
 
 <h2 id="Sudo Policy">Sudo Policy</h2>
-<p> Proof of work (PoW) describes a system that requires a not-insignificant but feasible amount of effort in order to deter frivolous or malicious uses of computing power, such as sending spam emails or launching denial of service attacks.
- The concept was subsequently adapted to securing digital money by Hal Finney in 2004 through the idea of "reusable proof of work" using the SHA-256 hashing algorithm.</p>
+<p> Go to <code>/etc/sudoers</code>  and run <code>sudo visudo</code></p>
+<p> NEVER EDIT THE SUDOERS FILE WITH A NORMAL TEXT EDITOR, ALWAYS USE <code>sudo visudo</code></p>
+<p> Find the <code>Defaults</code> section and add:</p>
+<p> To enable TTY <code> Defaults        requiretty</code></p>
+<p> To select the right folder for your log files <code> Defaults        logfile="/var/log/sudo/sudo.log"</code></p>
+<p> To archive your log inputs and outputs <code> Defaults        log_input, log_output</code></p>
+<p> To set your password retries (It usually comes 3 times as default, but still...) <code> Defaults        passwdtries=3</code></p>
+<p> To enable TTY <code> Defaults        badpass_message="Your message"</code></p>
+<p> The security pass probably is already there, but in case it isn't <code>Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</code></p>
+<img src="https://cdn.discordapp.com/attachments/920049215504269342/920102151815049247/40.png">
 
-<a href="https://www.investopedia.com/terms/p/proof-work.asp" target="_blank">Understanding Proof of Work - Investopedia</a> 
+
+<a href="https://www.linux.com/training-tutorials/linux-101-introduction-sudo/" target="_blank">Linux 101: Introduction to sudo</a> 
 <br>
 
 <h2 id="Script">Script</h2>
-<p> Proof of work (PoW) describes a system that requires a not-insignificant but feasible amount of effort in order to deter frivolous or malicious uses of computing power, such as sending spam emails or launching denial of service attacks.
- The concept was subsequently adapted to securing digital money by Hal Finney in 2004 through the idea of "reusable proof of work" using the SHA-256 hashing algorithm.</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 
 <a href="https://www.debian.org/download" target="_blank">here</a> 
 <br>
