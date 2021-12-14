@@ -53,7 +53,7 @@
 </div>
 <p> Reboot the machine: <code> sudo reboot</code></p>
 <p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
-<p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@10.0.2.5</code> in my case <code>sudo ssh -p 4242 bmiguel-@10.0.2.15</code></p>
+<p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@10.0.2.15</code> in my case <code>sudo ssh -p 4242 bmiguel-@10.0.2.15</code></p>
 <p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>sudo ssh -p 4242 username@127.0.0.1</code> in my case <code>sudo ssh -p 4242 bmiguel-@127.0.0.1</code></p>
 
 <a href="http://www.openssh.com/" target="_blank">Open SSH</a> 
