@@ -88,7 +88,7 @@
 <br>
 
 <h2 id="Sudo Policy">Sudo Policy</h2>
-<p> Go to <code>/etc/sudoers</code>  and run <code>sudo visudo</code></p>
+<p> Go to <code>/etc/sudoers.d</code>  and run <code>sudo visudo</code></p>
 <p> NEVER EDIT THE SUDOERS FILE WITH A NORMAL TEXT EDITOR, ALWAYS USE <code>sudo visudo</code></p>
 <p> Find the <code>Defaults</code> section and add:</p>
 <p> To enable TTY <code> Defaults        requiretty</code></p>
