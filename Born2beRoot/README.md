@@ -27,7 +27,7 @@
 <p> Login as root: <code>su</code></p>
 <p> Update & Upgrade: <code> apt update</code> and <code> apt upgrade</code></p>
 <p> Install sudo: <code> apt install sudo</code></p>
-<p> Add user to sudo group: <code>sudo usermode -aG sudo bmiguel-</code></p>
+<p> Add user to sudo group: <code>sudo usermod -aG sudo bmiguel-</code></p>
 <p> <code>-a</code> is a shortcut for --append: It means append the group to the list of groups the user belongs to!</p>
 <p> <code>-G</code> is a shortcut for --groups: It tells usermod that the next argument is a group. Note that you need to use a capital -G here because we don’t want to modify the user’s primary group but the list of supplemental groups the user belongs to.</p>
 <p> To check if your user is in the sudo group <code>getent group sudo</code></p>
