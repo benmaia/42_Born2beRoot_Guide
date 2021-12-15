@@ -107,16 +107,17 @@
 <p> Run: <code>sudo vim /usr/local/bin/monitoring.sh</code></p>
 <p> Every bash script start with <code>#!/bin/bash</code></p>
 <p> <code>wall</code> is a command-line utility that displays a message on the terminals of all logged-in users. The messages can be either typed on the terminal or the contents of a file.</p>
+<h3>Architecture</h3>
 <p> The command <code>uname -a</code> is use to get the architecture, <code>uname</code> is used to to print certain system information including kernel name, and the <code>-a</code> or <code>all</code> print all information </p>
 <p> To list the number of physical CPU's you can use <code>/proc/cpuinfo | grep "physical id" | sort | uniq | wc -l</code></p>
 <p> To list how many virtual processors you have you can use <code>/proc/cpuinfo | grep "^processor"</code></p>
-<p> free -m output in MB</p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
+<p> Now, lets set the free RAM and it's percentage, to see the free RAM we have lets run <code>free -m</code> the <code>-m</code> flag makes the output in MB as we want.</p>
+<p> We only want the Mem row,to do that we can <code>grep Mem</code>, the available memory is in the 4th column, to represent that we use <code>$4</code>, and to show just that value we will use <code>awk '{print $4}'</code>, if you don't know what <code><a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">awk</a></code> is, got study please!</p>
+<p> So overall the command is <code>free -m | grep Mem | awk '{print $4}'</code></p>
+<p> To get the total RAM memory we will do the same but instead of the column <code>$4</code> the total memory is in the column <code>$2</code></p>
+<p> So it will be <code>free -m | grep Mem | awk '{print $2}'</code></p>
+<p> To get the percentage of usage, we have to get the usage that is in the column<code>$3</code> and we will have to divide <code>$3/$2</code> and multiply by 100, <code>free -m | grep Mem | awk '{printf("%.2f"), $3/$2*100}'</code></p>
+<p> To see the server space you can run <code>df</code> that it will show you your disk space, to show it in MB we will use the flag <code>-m</code> and in GB we have to use 2 flags, <code>-B</code> to show the block size of the size we will ask, and <code>-g</code> that makes the size in GB. Our server it's the lines that start with <code>/dev/</code> so to get oly those lines we can <code>grep '^/dev/'</code>, the <code>^</code> means the beggining of the line so, every line that starts with ... . Those partitions(lines) are our home, our boot system and our dev, but actually you don't have acess to th boot partition because you can add or delete anything of that, so to take of only the line with boot we can use <code> grep -v '/boot$'</code>, the <code>-v</code>, is a flag to deselect the line, and the <code>$</code> is to select the end of the line, so it we are saying to take out the line that ends with ... .</p>
 <p> </p>
 <p> </p>
 <p> </p>
