@@ -110,6 +110,7 @@
 <h3>Architecture</h3>
 <p> The command <code>uname -a</code> is use to get the architecture, <code>uname</code> is used to to print certain system information including kernel name, and the <code>-a</code> or <code>all</code> print all information </p>
 <p> To list the number of physical CPU's you can use <code>/proc/cpuinfo | grep "physical id" | sort | uniq | wc -l</code></p>
+<p> The last you can find the full command if you just google the subject line</p>
 <p> To list how many virtual processors you have you can use <code>/proc/cpuinfo | grep "^processor"</code></p>
 <p> Now, lets set the free RAM and it's percentage, to see the free RAM we have lets run <code>free -m</code> the <code>-m</code> flag makes the output in MB as we want.</p>
 <p> We only want the Mem row,to do that we can <code>grep Mem</code>, the available memory is in the 4th column, to represent that we use <code>$4</code>, and to show just that value we will use <code>awk '{print $4}'</code>, if you don't know what <code><a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">awk</a></code> is, got study please!</p>
@@ -130,7 +131,8 @@
 <p> The final command will be <code>lsblk | grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no";exit;}}'</code></p>
 <p> To get the number of connections you can use <code>ss</code>, ss is a tool that displays network socket related information, and we're going to use <code>-t</code> that lists only the tcp connections. To get the active ones, we going to use <code>grep ESTAB</code> and to print the number os lines we will use <code>wc</code> that prints a newline, word and byte counts for files, and if we use the flag <code>-l</code> just print the newline counts. </p>
 <p> The final command is <code>ss -t | grep ESTAB | wc -l</code></p>
-<p> To see the number os users, I got 2 ways just by remeber what we already done, so you have the <code>who | wc -l</code> we used the <code>who</code> on the last reboot and <code>wc -l</code> or you can use the command <code>users | wc -c</code> the command <code>user</code> prints the users, and the <wc -c> the flag <code>-c</code> print the byte counts. So, choose one of them.</p>
+<p> To see the number os users, we are going to run <code>who</code> again, and lets cut until the first space <code>cut -d " "</code>, the <code>-d</code> flag use delimiter instead of TAB for field delimite, and after lets use the flag <code>-f</code> to select only these fields and add 1, so its like <code? cut -d " " -f 1</code>.</p>
+<p> Now lets use the command <code>sort</code> with the flag <code>-u</code> to output only the first of an equal run so it doesn't repeat, and that count the number of lines <code>wc -l</code>, so the command is <code>who | cut -d " " -f 1 | sort -u | wc -l</code></p>
 <p> Setting the IP of our server we will search the IP of the host, if you run <code>hostname</code> it displays the system's DNS name, and if you had the flag <code>-I</code> it display  all  network  addresses  of the host, so just use <code>hostname -I</code></p>
 <p> To find the MAC (Media Access Control) we can use the <code>ip</code> that shows / manipulate routing, network devices, interfaces and tunnels, and with the object <code>link show</code> shows the network device. The lines we want are the ones that have ether, so just <code>grep ether</code> and to get the MAC we just need to print the column <code>$2</code>, in the end is just <code>ip link show | grep ether | awk '{print $2}'</code></p>
 <p> I tried so hard to do this with install netstat, but couldn't get to the right number, so just <code>sudo apt install net-tools</code></p>
@@ -142,6 +144,14 @@
 <div align="center">
 <img src="https://media.discordapp.net/attachments/920049215504269342/920885938995990538/scipt2.png?width=1262&height=1573">
 </div>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 
 <h2 id="VM Assemble">VM Assemble</h2>
 <p> Get the Debian ISO from <a href="https://www.debian.org/download" target="_blank">here</a></p>
