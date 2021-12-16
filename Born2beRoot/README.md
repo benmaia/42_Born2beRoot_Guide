@@ -122,7 +122,7 @@
 <p> For the usage percent of the server is putting together what we did in the RAM but with the disk commands we did earlier, so <code>df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{fdisk += $3} {tdisk += $2} END {printf("%.2f"), fdisk/tdisk*100}'</code></p>
 <p> Now lets cet the Cpu usage in percent, fortunately the command <code>top</code> already give us the cpu %, I'll use the flag <code>-b</code> to start in batch mode, that is usefull for sending output from top to toher programs or to a file, and I'll use the flag <code>-n numberx</code> that specify the max number of iterations or frames, top should produce before ending.</p>
 <p> Because there is so many lines, lets grabe the one that matter <code>grep '^%Cpu'</code></p>
-<p> To values we want are in the column <code>$3</code> so lets grab him in percentage with 1 decimal number <code>awk '{printf("%.1"), $3}'</p>
+<p> To values we want are in the column <code>$3</code> so lets grab him in percentage with 1 decimal number <code>awk '{printf("%.1"), $3}'</code></p>
 <p> In the end <code>top -bn1 | grep '^%Cpu' | awk '{printf("%.1f%%"), $3}'</code></p>
 <p> For the the date and time of the last reboot, the command <code>who</code> it's the one, it prints out information about users who are currently loggend in, and with the flag <code>-b</code> shows the time of last system boot.</p>
 <p> To get only the information we want we just selecting the columns that we need <code>$3 $4</code>, but to print both columns we need to add a <code>" "</code> between, so <code>awk '{print $3 " " $4}'</code>, so the final command will be <code>who -b | awk '{print $3 " " $4}'</code></p>
@@ -130,7 +130,7 @@
 <p> The final command will be <code>lsblk | grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no";exit;}}'</code></p>
 <p> To get the number of connections you can use <code>ss</code>, ss is a tool that displays network socket related information, and we're going to use <code>-t</code> that lists only the tcp connections. To get the active ones, we going to use <code>grep ESTAB</code> and to print the number os lines we will use <code>wc</code> that prints a newline, word and byte counts for files, and if we use the flag <code>-l</code> just print the newline counts. </p>
 <p> The final command is <code>ss -t | grep ESTAB | wc -l</code></p>
-<p> </p>
+<p> To see the number os users, I got 2 ways just by remeber what we already done, so you have the <code>who | wc -l</code> we used the <code>who</code> on the last reboot and <code>wc -l</code> or you can use the command <code>users | wc -c</code> the command <code>user</code> prints the users, and the <wc -c> the flag <code>-c</code> print the byte counts. So, choose one of them.</p>
 <p> </p>
 <p> </p>
 <p> </p>
