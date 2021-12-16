@@ -104,36 +104,49 @@
 <br>
 
 <h2 id="Script">Script</h2>
+<h3> Create script </h3>
 <p> Run: <code>sudo vim /usr/local/bin/monitoring.sh</code></p>
 <p> Every bash script start with <code>#!/bin/bash</code></p>
 <p> <code>wall</code> is a command-line utility that displays a message on the terminals of all logged-in users. The messages can be either typed on the terminal or the contents of a file.</p>
+<h3> Architecture </h3>
 <p> The command <code>uname -a</code> is use to get the architecture, <code>uname</code> is used to to print certain system information including kernel name, and the <code>-a</code> or <code>all</code> print all information </p>
+<h3> Physical CPU </h3>
 <p> To list the number of physical CPU's you can use <code>grep "physical id" /proc/cpuinfo | sort | uniq | wc -l</code></p>
 <p> The last you can find the full command if you just google the subject line</p>
+<h3> Virtual CPU </h3>
 <p> To list how many virtual processors you have you can use <code>grep "^processor" /proc/cpuinfo | wc -l</code></p>
+<h3> Free RAM and usage % </h3>
 <p> Now, lets set the free RAM and it's percentage, to see the free RAM we have lets run <code>free -m</code> the <code>-m</code> flag makes the output in MB as we want.</p>
 <p> We only want the Mem row,to do that we can <code>grep Mem</code>, the available memory is in the 4th column, to represent that we use <code>$4</code>, and to show just that value we will use <code>awk '{print $4}'</code>, if you don't know what <code><a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" target="_blank">awk</a></code> is, got study please!</p>
 <p> So overall the command is <code>free -m | grep Mem | awk '{print $4}'</code></p>
 <p> To get the total RAM memory we will do the same but instead of the column <code>$4</code> the total memory is in the column <code>$2</code></p>
 <p> So it will be <code>free -m | grep Mem | awk '{print $2}'</code></p>
 <p> To get the percentage of usage, we have to get the usage that is in the column<code>$3</code> and we will have to divide <code>$3/$2</code> and multiply by 100, <code>free -m | grep Mem | awk '{printf("%.2f"), $3/$2*100}'</code></p>
+<h3> Free server space and usage %</h3>
 <p> To see the server space you can run <code>df</code> that it will show you your disk space, to show it in MB we will use the flag <code>-m</code> and in GB we have to use 2 flags, <code>-B</code> to show the block size of the size we will ask, and <code>-g</code> that makes the size in GB. Our server it's the lines that start with <code>/dev/</code> so to get oly those lines we can <code>grep '^/dev/'</code>, the <code>^</code> means the beggining of the line so, every line that starts with ... . Those partitions(lines) are our home, our boot system and our dev, but actually you don't have acess to th boot partition because you can add or delete anything of that, so to take of only the line with boot we can use <code> grep -v '/boot$'</code>, the <code>-v</code>, is a flag to deselect the line, and the <code>$</code> is to select the end of the line, so it we are saying to take out the line that ends with ... . this time the print is a sum of the 3 lines so I created a variable (fdisk) and add the lines of the same column <code>awk '{fdisk += $4}</code>, to print the end result we have to add to the <code>awk</code> the following <code>END {print fdisk}</code>. So in the end we get <code>df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{fdisk += $4} END {print fdisk}'</code></p>
 <p> To get the total disk space lets do the same but change the variable name to tdisk, the <code>-m</code> for <code>-Bg</code> and the column <code>$4</code> to <code>$2</code> so <code>df -Bg | grep '^/dev/' | grep -v '/boot$' | awk '{tdisk += $2} END {print tdisk}'</code></p>
 <p> For the usage percent of the server is putting together what we did in the RAM but with the disk commands we did earlier, so <code>df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{fdisk += $3} {tdisk += $2} END {printf("%.2f"), fdisk/tdisk*100}'</code></p>
-<p> Now lets cet the Cpu usage in percent, fortunately the command <code>top</code> already give us the cpu %, I'll use the flag <code>-b</code> to start in batch mode, that is usefull for sending output from top to toher programs or to a file, and I'll use the flag <code>-n numberx</code> that specify the max number of iterations or frames, top should produce before ending.</p>
+<h3> CPU usage %</h3>
+<p> Now lets get the Cpu usage in percent, fortunately the command <code>top</code> already give us the cpu %, I'll use the flag <code>-b</code> to start in batch mode, that is usefull for sending output from top to toher programs or to a file, and I'll use the flag <code>-n numberx</code> that specify the max number of iterations or frames, top should produce before ending.</p>
 <p> Because there is so many lines, lets grabe the one that matter <code>grep '^%Cpu'</code></p>
 <p> To values we want are in the column <code>$3</code> so lets grab him in percentage with 1 decimal number <code>awk '{printf("%.1"), $3}'</code></p>
 <p> In the end <code>top -bn1 | grep '^%Cpu' | awk '{printf("%.1f%%"), $3}'</code></p>
+<h3> Last reboot</h3>
 <p> For the the date and time of the last reboot, the command <code>who</code> it's the one, it prints out information about users who are currently loggend in, and with the flag <code>-b</code> shows the time of last system boot.</p>
 <p> To get only the information we want we just selecting the columns that we need <code>$3 $4</code>, but to print both columns we need to add a <code>" "</code> between, so <code>awk '{print $3 " " $4}'</code>, so the final command will be <code>who -b | awk '{print $3 " " $4}'</code></p>
-<p> Now, theres no command to run that says if the LVM is active or not so the way I did is, I run the command <code>lsblk</code> that will show the partitions, and I'm grabing just the lvm part <code>grep lvm</code> to check I'll do an if, so if I the column <code>$1</code> is different from NULL print an yes and exit, otherwise print a no <code>awk '{if ($1) {print "yes";exit;} else {print "no"}}'</code> </p>
+<h3> LVM active</h3>
+<p> So, theres no command to run that says if the LVM is active or not so the way I did is, I run the command <code>lsblk</code> that will show the partitions, and I'm grabing just the lvm part <code>grep lvm</code> to check I'll do an if, so if I the column <code>$1</code> is different from NULL print an yes and exit, otherwise print a no <code>awk '{if ($1) {print "yes";exit;} else {print "no"}}'</code> </p>
 <p> The final command will be <code>lsblk | grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no";exit;}}'</code></p>
+<h3> Number of connections</h3>
 <p> To get the number of connections you can use <code>ss</code>, ss is a tool that displays network socket related information, and we're going to use <code>-t</code> that lists only the tcp connections. To get the active ones, we going to use <code>grep ESTAB</code> and to print the number os lines we will use <code>wc</code> that prints a newline, word and byte counts for files, and if we use the flag <code>-l</code> just print the newline counts. </p>
 <p> The final command is <code>ss -t | grep ESTAB | wc -l</code></p>
+<h3> Number of users</h3>
 <p> To see the number os users, we are going to run <code>who</code> again, and lets cut until the first space <code>cut -d " "</code>, the <code>-d</code> flag use delimiter instead of TAB for field delimite, and after lets use the flag <code>-f</code> to select only these fields and add 1, so its like <code? cut -d " " -f 1</code>.</p>
 <p> Now lets use the command <code>sort</code> with the flag <code>-u</code> to output only the first of an equal run so it doesn't repeat, and that count the number of lines <code>wc -l</code>, so the command is <code>who | cut -d " " -f 1 | sort -u | wc -l</code></p>
+<h3> IPv4 Adress & MAC (Media Access Control) </h3>
 <p> Setting the IP of our server we will search the IP of the host, if you run <code>hostname</code> it displays the system's DNS name, and if you had the flag <code>-I</code> it display  all  network  addresses  of the host, so just use <code>hostname -I</code></p>
 <p> To find the MAC (Media Access Control) we can use the <code>ip</code> that shows / manipulate routing, network devices, interfaces and tunnels, and with the object <code>link show</code> shows the network device. The lines we want are the ones that have ether, so just <code>grep ether</code> and to get the MAC we just need to print the column <code>$2</code>, in the end is just <code>ip link show | grep ether | awk '{print $2}'</code></p>
+<h3> Numbers of sudo commands</h3>
 <p> I tried so hard to do this with install netstat, but couldn't get to the right number, so just <code>sudo apt install net-tools</code></p>
 <p> Now we have access to the command <code>journalctl</code> may be used to query the contents of the systemd(1) journal as
   written by systemd-journald.service(8), lets add <code>_COMM</code> to match for the script name <code>(sudo)</code>is added to the query. Lets grab just the commands thats what we want <code>grep COMMAND</code>, and lets cound the number of lines <code>wc -l</code> </p>
@@ -141,10 +154,10 @@
 <p> Now lets use wall to print all the variables with the right text to it looks pretty.</p>
 <p> In the final my script looks like this:</p>
 <div align="center">
-<img src="https://media.discordapp.net/attachments/920049215504269342/920885938995990538/scipt2.png?width=1262&height=1573">
+<img src="https://media.discordapp.net/attachments/920049215504269342/921064013171941406/3.png">
 </div>
 <p> Now lets add the rule for the script execute with sudo permissions with out the sudo password. Run the <code>sudo visudo</code> and add <code>bmiguel- ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</code> in the "Allow members of group sudo to execute any command"</p>
-<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code></p>
+<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</p>
 
 
 <h2 id="VM Assemble">VM Assemble</h2>
