@@ -82,7 +82,7 @@
 <p> To set a minimum number of chars that must be different from the old pw add <code> difok=7</code></p>
 <p> To the root pw comply to this policy add <code> enforce_for_root</code></p></p>
 <p> Reboot your VM <code> sudo reboot</code></p>
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920102151538217010/39.png">
+ <img src="https://media.discordapp.net/attachments/920049215504269342/920886949655486514/1.png" >
 
 <a href="https://linux.die.net/man/8/pam_pwquality" target="_blank">Pam_pwquality</a> 
 <br>
@@ -97,7 +97,7 @@
 <p> To set your password retries (It usually comes 3 times as default, but still...) <code> Defaults        passwd_tries=3</code></p>
 <p> To enable TTY <code> Defaults        badpass_message="Your message"</code></p>
 <p> The security pass probably is already there, but in case it isn't <code>Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"</code></p>
-<img src="https://cdn.discordapp.com/attachments/920049215504269342/920102151815049247/40.png">
+<img src="https://media.discordapp.net/attachments/920049215504269342/920886949265420298/2.png" >
 
 
 <a href="https://www.linux.com/training-tutorials/linux-101-introduction-sudo/" target="_blank">Linux 101: Introduction to sudo</a> 
@@ -131,22 +131,17 @@
 <p> To get the number of connections you can use <code>ss</code>, ss is a tool that displays network socket related information, and we're going to use <code>-t</code> that lists only the tcp connections. To get the active ones, we going to use <code>grep ESTAB</code> and to print the number os lines we will use <code>wc</code> that prints a newline, word and byte counts for files, and if we use the flag <code>-l</code> just print the newline counts. </p>
 <p> The final command is <code>ss -t | grep ESTAB | wc -l</code></p>
 <p> To see the number os users, I got 2 ways just by remeber what we already done, so you have the <code>who | wc -l</code> we used the <code>who</code> on the last reboot and <code>wc -l</code> or you can use the command <code>users | wc -c</code> the command <code>user</code> prints the users, and the <wc -c> the flag <code>-c</code> print the byte counts. So, choose one of them.</p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-
-
-
-<a href="https://www.debian.org/download" target="_blank">here</a> 
-<br>
+<p> Setting the IP of our server we will search the IP of the host, if you run <code>hostname</code> it displays the system's DNS name, and if you had the flag <code>-I</code> it display  all  network  addresses  of the host, so just use <code>hostname -I</code></p>
+<p> To find the MAC (Media Access Control) we can use the <code>ip</code> that shows / manipulate routing, network devices, interfaces and tunnels, and with the object <code>link show</code> shows the network device. The lines we want are the ones that have ether, so just <code>grep ether</code> and to get the MAC we just need to print the column <code>$2</code>, in the end is just <code>ip link show | grep ether | awk '{print $2}'</code></p>
+<p> I tried so hard to do this with install netstat, but couldn't get to the right number, so just <code>sudo apt install net-tools</code></p>
+<p> Now we have access to the command <code>journalctl</code> may be used to query the contents of the systemd(1) journal as
+  written by systemd-journald.service(8), lets add <code>_COMM</code> to match for the script name <code>(sudo)</code>is added to the query. Lets grab just the commands thats what we want <code>grep COMMAND</code>, and lets cound the number of lines <code>wc -l</code> </p>
+<p> The final command <code>journalctl _COMM=sudo | grep COMMAND | wc -l</code></p>
+<p> Now lets use wall to print all the variables with the right text to it looks pretty.</p>
+<p> In the final my script looks like this:</p>
+<div align="center">
+<img src="https://media.discordapp.net/attachments/920049215504269342/920885938995990538/scipt2.png?width=1262&height=1573">
+</div>
 
 <h2 id="VM Assemble">VM Assemble</h2>
 <p> Get the Debian ISO from <a href="https://www.debian.org/download" target="_blank">here</a></p>
