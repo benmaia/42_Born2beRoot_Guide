@@ -152,7 +152,7 @@
   written by systemd-journald.service(8), lets add <code>_COMM</code> to match for the script name <code>(sudo)</code>is added to the query. Lets grab just the commands thats what we want <code>grep COMMAND</code>, and lets cound the number of lines <code>wc -l</code> </p>
 <p> The final command <code>journalctl _COMM=sudo | grep COMMAND | wc -l</code></p>
 <p> Now lets use wall to print all the variables with the right text to it looks pretty.</p>
-<p> In the final my script looks like this:</p>
+<p> In the <a href="https://github.com/benmaia/42_Born2beRoot/blob/master/Born2beRoot/monitoring.sh" target="_blank">final my script</a> looks like this:</p>
 <div align="center">
 <img src="https://media.discordapp.net/attachments/920049215504269342/921064013171941406/3.png">
 </div>
