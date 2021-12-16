@@ -144,14 +144,9 @@
 <div align="center">
 <img src="https://media.discordapp.net/attachments/920049215504269342/920885938995990538/scipt2.png?width=1262&height=1573">
 </div>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
-<p> </p>
+<p> Now lets add the rule for the script execute with sudo permissions with out the sudo password. Run the <code>sudo visudo</code> and add <code>bmiguel- ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</code> in the "Allow members of group sudo to execute any command"</p>
+<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code></p>
+
 
 <h2 id="VM Assemble">VM Assemble</h2>
 <p> Get the Debian ISO from <a href="https://www.debian.org/download" target="_blank">here</a></p>
