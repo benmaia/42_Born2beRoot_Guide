@@ -157,7 +157,7 @@
 <img src="https://media.discordapp.net/attachments/920049215504269342/921064013171941406/3.png">
 </div>
 <p> Now lets add the rule for the script execute with sudo permissions with out the sudo password. Run the <code>sudo visudo</code> and add <code>bmiguel- ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</code> in the "Allow members of group sudo to execute any command"</p>
-<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</p>
+<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</code></p>
 
 
 <h2 id="VM Assemble">VM Assemble</h2>
