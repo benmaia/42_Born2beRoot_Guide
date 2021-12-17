@@ -54,7 +54,7 @@
 <p> Reboot the machine: <code> sudo reboot</code></p>
 <p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
 <p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@10.0.2.15</code> in my case <code>sudo ssh -p 4242 bmiguel-@10.0.2.15</code></p>
-<p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>sudo ssh -p 4242 username@127.0.0.1</code> in my case <code>sudo ssh -p 4242 bmiguel-@127.0.0.1</code></p>
+<p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>ssh -p 4242 username@127.0.0.1</code> in my case <code>ssh -p 4242 bmiguel-@127.0.0.1</code>, don't forget you don't use sudo, you don't have sudo permissions in the 42 iMac :)</p>
 
 <a href="http://www.openssh.com/" target="_blank">Open SSH</a> 
 <br>
@@ -152,12 +152,12 @@
   written by systemd-journald.service(8), lets add <code>_COMM</code> to match for the script name <code>(sudo)</code>is added to the query. Lets grab just the commands thats what we want <code>grep COMMAND</code>, and lets cound the number of lines <code>wc -l</code> </p>
 <p> The final command <code>journalctl _COMM=sudo | grep COMMAND | wc -l</code></p>
 <p> Now lets use wall to print all the variables with the right text to it looks pretty.</p>
-<p> In the final my script looks like this:</p>
+<p> In the <a href="https://github.com/benmaia/42_Born2beRoot/blob/master/Born2beRoot/monitoring.sh" target="_blank">final my script</a> looks like this:</p>
 <div align="center">
 <img src="https://media.discordapp.net/attachments/920049215504269342/921064013171941406/3.png">
 </div>
 <p> Now lets add the rule for the script execute with sudo permissions with out the sudo password. Run the <code>sudo visudo</code> and add <code>bmiguel- ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</code> in the "Allow members of group sudo to execute any command"</p>
-<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</p>
+<p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</code></p>
 
 
 <h2 id="VM Assemble">VM Assemble</h2>
