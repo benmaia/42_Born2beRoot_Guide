@@ -129,8 +129,8 @@
 <h3> CPU usage %</h3>
 <p> Now lets get the Cpu usage in percent, fortunately the command <code>top</code> already give us the cpu %, I'll use the flag <code>-b</code> to start in batch mode, that is usefull for sending output from top to toher programs or to a file, and I'll use the flag <code>-n numberx</code> that specify the max number of iterations or frames, top should produce before ending.</p>
 <p> Because there is so many lines, lets grabe the one that matter <code>grep '^%Cpu'</code></p>
-<p> To values we want are in the column <code>$3</code> so lets grab him in percentage with 1 decimal number <code>awk '{printf("%.1"), $3}'</code></p>
-<p> In the end <code>top -bn1 | grep '^%Cpu' | awk '{printf("%.1f%%"), $3}'</code></p>
+<p> To values we want are in the column <code>$2</code> so lets grab him in percentage with 1 decimal number <code>awk '{printf("%.1"), $2}'</code></p>
+<p> In the end <code>top -bn1 | grep '^%Cpu' | awk '{printf("%.1f%%"), $2}'</code></p>
 <h3> Last reboot</h3>
 <p> For the the date and time of the last reboot, the command <code>who</code> it's the one, it prints out information about users who are currently loggend in, and with the flag <code>-b</code> shows the time of last system boot.</p>
 <p> To get only the information we want we just selecting the columns that we need <code>$3 $4</code>, but to print both columns we need to add a <code>" "</code> between, so <code>awk '{print $3 " " $4}'</code>, so the final command will be <code>who -b | awk '{print $3 " " $4}'</code></p>
@@ -154,7 +154,7 @@
 <p> Now lets use wall to print all the variables with the right text to it looks pretty.</p>
 <p> In the <a href="https://github.com/benmaia/42_Born2beRoot/blob/master/Born2beRoot/monitoring.sh" target="_blank">final my script</a> looks like this:</p>
 <div align="center">
-<img src="https://media.discordapp.net/attachments/920049215504269342/921064013171941406/3.png">
+<img src="https://media.discordapp.net/attachments/920049215504269342/921374434286239754/60.png">
 </div>
 <p> Now lets add the rule for the script execute with sudo permissions with out the sudo password. Run the <code>sudo visudo</code> and add <code>bmiguel- ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</code> in the "Allow members of group sudo to execute any command"</p>
 <p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</code></p>
