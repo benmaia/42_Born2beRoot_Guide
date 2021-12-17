@@ -8,7 +8,7 @@
 > *This project aims to introduce you to the wonderful world of virtualization*
 </br>
 </br>
-<p> You will create your first machine inVirtualBox(orUTMif you can’t useVirtualBox)under specific instructions. Then, at the end of this project, you will be able to set upyour own operating system while implementing strict rules.
+<p> You will create your first machine inVirtualBox(or UTM if you can’t useVirtualBox)under specific instructions. Then, at the end of this project, you will be able to set upyour own operating system while implementing strict rules.
 </br>
 <p> You can do anything you want to do ... VIRTUAL MACHINE!!!! This is your WORLD!</p>
 </br>
