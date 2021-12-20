@@ -11,7 +11,7 @@ total_disk=$(df -Bg | grep '^/dev/' | grep -v '/boot$' | awk '{tdisk += $2} END 
 disk_usage_percent=$(df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{fdisk += $3} {tdisk += $2} END {printf("%.2f"), fdisk/tdisk*100}')
 proc_usage_percent=$(top -bn1 | grep '^%Cpu' | awk '{printf("%.1f%%"), $2}')
 last_boot=$(who -b | awk '{print $3 " " $4}')
-lvm_active=$(lsblk | grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no";exit;}}')
+lvm_active=$(lsblk | grep 'lvm' | awk '{if ($1) {printf "\033[0;32mYes\033[0m";exit} else {print "\033[0;031mNo\033[0m";exit;}}')
 n_active_connect=$(ss -t | grep ESTAB | wc -l)
 n_users_server=$(who | cut -d " " -f 1 | sort -u | wc -l)
 ipv4=$(hostname -I)
