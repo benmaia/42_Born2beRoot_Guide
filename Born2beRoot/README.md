@@ -139,7 +139,7 @@
 <p> To get only the information we want we just selecting the columns that we need <code>$3 $4</code>, but to print both columns we need to add a <code>" "</code> between, so <code>awk '{print $3 " " $4}'</code>, so the final command will be <code>who -b | awk '{print $3 " " $4}'</code></p>
 <h3> LVM active</h3>
 <p> So, theres no command to run that says if the LVM is active or not so the way I did is, I run the command <code>lsblk</code> that will show the partitions, and I'm grabing just the lvm part <code>grep lvm</code> to check I'll do an if, so if I the column <code>$1</code> is different from NULL print an yes and exit, otherwise print a no <code>awk '{if ($1) {print "yes";exit;} else {print "no"}}'</code> </p>
-<p> The final command will be <code>lsblk | grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no";exit;}}'</code></p>
+<p> The final command will be <code>lsblk | grep 'lvm' | awk '{if ($1) {printf "\033[0;32mYes\033[0m";exit} else {print "\033[0;031mNo\033[0m";exit;}}'</code></p>
 <h3> Number of connections</h3>
 <p> To get the number of connections you can use <code>ss</code>, ss is a tool that displays network socket related information, and we're going to use <code>-t</code> that lists only the tcp connections. To get the active ones, we going to use <code>grep ESTAB</code> and to print the number os lines we will use <code>wc</code> that prints a newline, word and byte counts for files, and if we use the flag <code>-l</code> just print the newline counts. </p>
 <p> The final command is <code>ss -t | grep ESTAB | wc -l</code></p>
@@ -157,7 +157,7 @@
 <p> Now lets use wall to print all the variables with the right text to it looks pretty.</p>
 <p> In the <a href="https://github.com/benmaia/42_Born2beRoot/blob/master/Born2beRoot/monitoring.sh" target="_blank">final my script</a> looks like this:</p>
 <div align="center">
-<img src="https://media.discordapp.net/attachments/920049215504269342/921374434286239754/60.png">
+<img src="https://media.discordapp.net/attachments/920049215504269342/922548665111957544/100.png?width=2486&height=1273">
 </div>
 <p> Now lets add the rule for the script execute with sudo permissions with out the sudo password. Run the <code>sudo visudo</code> and add <code>bmiguel- ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</code> in the "Allow members of group sudo to execute any command"</p>
 <p> Now to make the script run every 10 mins, you need to <code>sudo crontab -e</code> and at the end of the file put <code>*/10 * * * * /usr/local/bin/monitoring.sh</code> to make it running after reboot add <code>@reboot /usr/local/bin/monitoring.sh</code> under the 10 min macro. I'm adding the sleep macro, because when you boot your machine the script will run but you ain't logged in so you won't even see it <code>sleep 10</code> so the end code is <code>@reboot sleep 10; sh /usr/local/bin/monitoring.sh</code></p>
