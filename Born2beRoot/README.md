@@ -25,7 +25,9 @@
 <p><a href="#Signature">
   06 - Digital Signature
 </a></p>
-
+<p><a href="#Evaluation">
+  07 - Study for Evaluation
+</a></p>
 <h2 id="Set the basic up">Set the basic up</h2>
 <p> Login as root: <code>su</code></p>
 <p> Update & Upgrade: <code> apt update</code> and <code> apt upgrade</code></p>
@@ -52,7 +54,7 @@
  <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654394892328/9.png" width="500px" height="400px">
 <p> Insert <code>4242</code> in Host Port and Guest Port</p>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654780788838/10.png" width="900px" height="350px">
+ <img src="https://cdn.discordapp.com/attachments/920049215504269342/920074087370485760/10.png" width="900px" height="350px">
 </div>
 <p> Reboot the machine: <code> sudo reboot</code></p>
 <p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
@@ -168,6 +170,10 @@
 <p> After checking if everything is working, close your virtual machine and don't touch it anymore!!!!! Or the signature will chage and you get 0.</p>
 <p> To submit the digital signature now, you will have to go to your <code>goinfre</code> or <code>sgoinfree</code> (if your doing in your laptop, in the place you have your .dvi, usually <code>/VirtualBox\ VMs/</code>) and run <code>shasum "yourfile.dvi"</code></p>
 <p> After that, copy the key to a file with the name <code>signature.txt</code> and submit it to intra</p>
+
+<h2 id="Evaluation">Study for Evaluation</h2>
+<p> After you done the project, it's time to study!</p>
+<p> <a href="https://www.debian.org/download" target="_blank">Here</a> is a guide to the evaluation you can use to study and prepare!</p>
 <h3> I wish you the best luck!!!!</h3>
 
 <h2 id="VM Assemble">VM Assemble</h2>
