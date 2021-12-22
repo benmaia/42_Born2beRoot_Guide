@@ -173,7 +173,7 @@
 
 <h2 id="Evaluation">Study for Evaluation</h2>
 <p> After you done the project, it's time to study!</p>
-<p> <a href="https://www.debian.org/download" target="_blank">Here</a> is a guide to the evaluation you can use to study and prepare!</p>
+<p> <a href="https://github.com/benmaia/42_Born2beRoot/tree/master/Evaluation" target="_blank">Here</a> is a guide to the evaluation you can use to study and prepare!</p>
 <h3> I wish you the best luck!!!!</h3>
 
 <h2 id="VM Assemble">VM Assemble</h2>
