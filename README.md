@@ -9,10 +9,9 @@
 <p> You will create your first machine in VirtualBox (or UTM if you can’t useVirtualBox)under specific instructions. Then, at the end of this project, you will be able to set upyour own operating system while implementing strict rules.
 
 <p> You can do anything you want to do ... VIRTUAL MACHINE!!!! This is your WORLD!</p>
-</br>
-</br>
+
 <p> Born2beRoot OK ✅</p>
-</br>
+
 <p> Grade: 100% </p>
 <div style="display: inline"><br>
    <img src="https://media.discordapp.net/attachments/461563270411714561/921376799890501662/Screen_Shot_2021-12-17_at_12.20.48_PM.png">
