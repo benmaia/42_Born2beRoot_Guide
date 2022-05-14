@@ -1,5 +1,7 @@
 <h1>Born2beRoot</h1>
 
+<p> I have a script that makes Born2beRoot automaticly, if you are interested, find it <a href="https://github.com/benmaia/42_Born2beRoot" target="_blank">here</a></p>
+
 <h2> Index </h2>
 <p><a href="#VM Assemble">
   00 - VM Assemble
