@@ -52,16 +52,38 @@
 <p> Install UFW Firewall: <code> sudo apt install ufw</code></p>
 <p> Activate UFW: <code>sudo ufw enable</code></p>
 <p> To check if its enable <code>sudo ufw status</code></p>
+
+<h3>MacOs</h3>
+
 <p> Go to VirutalBox -> Choose the VM -> Select "Settings" -> Choose "Network" -> "Adapter 1" -> "Advance" -> "Port Forwarding"</p>
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654394892328/9.png" width="500px" height="400px">
+ <img src="https://media.discordapp.net/attachments/461563270411714561/1010256696435810415/we.png?width=685&height=521" width="500px" height="400px">
 <p> Insert <code>4242</code> in Host Port and Guest Port</p>
-<div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920074087370485760/10.png" width="900px" height="350px">
+<div>
+ <img src="https://media.discordapp.net/attachments/920049215504269342/1010256160537972806/23.png" width="500px" height="350px">
 </div>
 <p> Reboot the machine: <code> sudo reboot</code></p>
 <p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
 <p> To get remote access trough ssh port 4242, run this in your VM: <code>sudo ssh -p 4242 username@10.0.2.15</code> in my case <code>sudo ssh -p 4242 bmiguel-@10.0.2.15</code></p>
 <p> Now outside your VM, in your pc (42 iMac, in your own terminal) run: <code>ssh -p 4242 username@127.0.0.1</code> in my case <code>ssh -p 4242 bmiguel-@127.0.0.1</code>, don't forget you don't use sudo, you don't have sudo permissions in the 42 iMac :)</p>
+
+<h3>Linux</h3>
+
+<p> Go to VirutalBox -> Choose the VM -> Select "Settings" -> Choose "Network" -> "Adapter 1" -> " in Attached to: change to "Bridged Adapter"</p>
+ <img src="https://media.discordapp.net/attachments/920049215504269342/1010257637415338034/3213.png?width=685&height=525">
+
+<p> Reboot the machine: <code> sudo reboot</code></p>
+<p> Allow the port 4242 on the Firewall: <code>sudo ufw allow 4242/tcp</code></p>
+<p>Get the ip address:</p>
+
+<code>ip a | grep inet | grep 'global dynamic' | cut -d'/' -f1 | awk '{ print $2 }'</code> 
+<p> To get remote access trough ssh port 4242, run this in your VM:
+
+<code>sudo ssh -p 4242 username@your_ip</code> in my case <code>sudo ssh -p 4242 bmiguel-@10.12.178.197</code></p>
+<p> Now outside your VM, in your pc (42 Linux, in your own terminal) run: <code>ssh -p 4242 username@your_ip</code> in my case <code>ssh -p 4242 bmiguel-@10.12.178.197</code>, don't forget you don't use sudo, you don't have sudo permissions in the 42 Linux :)</p>
+
+
+<br>
+<br>
 
 <a href="http://www.openssh.com/" target="_blank">Open SSH</a> 
 <br>
@@ -183,28 +205,28 @@
 <p> ISO the netinst CD is a small CD image that contains just the core Debian installer code and a small core set of text-mode programs(known as "standart" in Debian).</p>
 <br>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920074087555018762/1.png">
+ <img src="https://miro.medium.com/max/1356/1*WyFDl98AZfft999XCKD6kA.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072652243214386/2.png">
+ <img src="https://miro.medium.com/max/1350/1*SoVNIKT340ARlLvQ7RuwDA.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072652503273482/3.png">
+ <img src="https://miro.medium.com/max/1348/1*PzVboJLyLTs7qJmgbdoBYA.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072652859797584/4.png">
+ <img src="https://miro.medium.com/max/1388/1*6_D9jIyOW0jE3a6vF_UzXg.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072653086261339/5.png">
+ <img src="https://miro.medium.com/max/1394/1*HagpR-UD0HWCb7zRTeSQXQ.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072653400842250/6.png">
+ <img src="https://miro.medium.com/max/1400/1*rYdYJbPswCVCUa5pwKcRZA.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072653707034634/7.png">
+ <img src="https://miro.medium.com/max/1400/1*VDy31g0tePnUOuJ1cZQsxQ.png">
 </div>
 <div align="center">
- <img src="https://cdn.discordapp.com/attachments/920049215504269342/920072654038397018/8.png">
+ <img src="https://miro.medium.com/max/1400/1*FOldzHFaQ2JS_phe6z6T4g.png">
 </div>
 
 <h2 id="Installation">Installation</h2>
